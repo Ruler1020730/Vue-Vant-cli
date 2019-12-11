@@ -1,8 +1,10 @@
 <template>
-    <main>
-        <router-view/>
+    <section>
+        <div class="home-content">
+            <router-view/>
+        </div>
         <Footer/>
-    </main>
+    </section>
 </template>
 
 <script>
@@ -29,5 +31,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-
+    .home-content{
+        height: calc(100vh - 50px);
+    }
 </style>

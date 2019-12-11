@@ -1,19 +1,35 @@
 <template>
     <footer>
-        <van-tabbar route>
+        <van-tabbar
+                route
+                active-color="#07c160">
             <van-tabbar-item
                     replace
                     to="/home"
                     icon="home-o"
             >
-                标签
+                首页
             </van-tabbar-item>
             <van-tabbar-item
                     replace
-                    to="/search"
-                    icon="search"
+                    to="/"
+                    icon="orders-o"
             >
-                标签
+                商品列表
+            </van-tabbar-item>
+            <van-tabbar-item
+                    replace
+                    to="/"
+                    icon="shopping-cart-o"
+            >
+                购物车
+            </van-tabbar-item>
+            <van-tabbar-item
+                    replace
+                    to="/"
+                    icon="contact"
+            >
+                个人中心
             </van-tabbar-item>
         </van-tabbar>
     </footer>

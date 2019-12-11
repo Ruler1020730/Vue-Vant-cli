@@ -14,5 +14,8 @@ Vue.use(Popup)
 
 // 4.TabBar
 import { Tabbar, TabbarItem } from 'vant'
-
 Vue.use(Tabbar).use(TabbarItem)
+
+// 5.NavBar 顶部导航栏
+import { NavBar } from 'vant'
+Vue.use(NavBar)
