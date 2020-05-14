@@ -8,28 +8,14 @@
                     to="/home"
                     icon="home-o"
             >
-                首页  
+                首页
             </van-tabbar-item>
             <van-tabbar-item
                     replace
-                    to="/"
+                    to="/list"
                     icon="orders-o"
             >
                 商品列表
-            </van-tabbar-item>
-            <van-tabbar-item
-                    replace
-                    to="/"
-                    icon="shopping-cart-o"
-            >
-                购物车
-            </van-tabbar-item>
-            <van-tabbar-item
-                    replace
-                    to="/"
-                    icon="contact"
-            >
-                个人中心
             </van-tabbar-item>
         </van-tabbar>
     </footer>

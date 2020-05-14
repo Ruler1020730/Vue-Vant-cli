@@ -8,5 +8,6 @@
 <style lang="less">
  body{
    background-color: #f7f8fa;
+   height: 100%;
  }
 </style>

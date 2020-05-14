@@ -3,7 +3,7 @@
         <div class="home-content">
             <router-view/>
         </div>
-        <Footer/>
+        <Footer v-if="false"/>
     </section>
 </template>
 
@@ -32,6 +32,6 @@ export default {
 
 <style scoped lang="less">
     .home-content{
-        height: calc(100vh - 50px);
+        /*height: calc(100vh - 50px);*/
     }
 </style>
