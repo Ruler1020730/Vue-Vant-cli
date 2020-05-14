@@ -1,4 +1,3 @@
 export default {
-  getUserInfo: (state) => state.userInfo,
-  token: (state) => state.token
+  getUserInfo: (state) => state.userInfo
 }
