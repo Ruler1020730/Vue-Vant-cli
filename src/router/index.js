@@ -2,16 +2,31 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
+
+import {login} from './modules/user'
+
 export const router = [
   {
     path: '/',
     name: 'index',
-    component: () => import('@/views/home/index'), // 路由懒加载
+    redirect: 'home',
+    component: () => import('@/layout/index'), // 路由懒加载
     meta: {
       title: '首页', // 页面标题
       keepAlive: false // keep-alive 标识
-    }
-  }
+    },
+    children: [
+      {
+        path: 'home',
+        component: () => import('@/views/home/index')
+      },
+      {
+        path: 'about',
+        component: () => import('@/views/about/index')
+      }
+    ]
+  },
+  ...login
 ]
 
 const createRouter = () =>

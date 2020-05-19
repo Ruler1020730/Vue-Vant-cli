@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-tabbar fixed route>
-      <van-tabbar-item to="/" icon="home-o">
+      <van-tabbar-item to="/home" icon="home-o">
         首页
       </van-tabbar-item>
       <van-tabbar-item to="/about" icon="user-o">

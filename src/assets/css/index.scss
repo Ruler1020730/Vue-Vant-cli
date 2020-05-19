@@ -1,6 +1,6 @@
 @import './variables.scss';
 @import './mixin.scss';
- 
+@import "util.css";
 html,
 body
 .app {
@@ -8,7 +8,7 @@ body
   font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
   background-color: $background-color;
 }
- 
+
 .app-container{
   padding-bottom:50px;
 }

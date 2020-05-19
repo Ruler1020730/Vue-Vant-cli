@@ -1,14 +1,19 @@
 <!-- home -->
 <template>
   <div>
-    <div class="text-cyan text-lg">首页</div>
+    <router-view />
+    <TabBar></TabBar>
   </div>
 </template>
 
 <script>
+import TabBar from '@/components/TabBar'
+
 export default {
   name: 'home',
-  components: {},
+  components: {
+    TabBar
+  },
   data() {
     return {}
   },

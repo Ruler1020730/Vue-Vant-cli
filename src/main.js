@@ -24,9 +24,10 @@ import 'lib-flexible/flexible.js'
 import './filters'
 Vue.config.productionTip = false
 
+import $dayjs from './utils/timeFormat'
+Vue.prototype.dayjs = $dayjs
 new Vue({
-  el: '#app',
   router,
   store,
   render: h => h(App)
-})
+}).$mount('#app')
