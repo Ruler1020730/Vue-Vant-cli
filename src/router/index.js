@@ -1,32 +1,25 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
-
-/**
- * 路由懒加载
- * @param file 文件基本路径 名称
- * @returns {function(): (Promise<*>|*)}
- * @private
- */
-const _import_ = file => () => import('@/views/' + file + '.vue')
-
-const routes = [
+Vue.use(Router)
+export const router = [
   {
     path: '/',
-    name: 'home',
-    component: _import_('Layout/index'),
-    redirect: '/home',
-    children: [
-      { path: 'home', component: _import_('home/Home'), name: 'home'}
-    ]
+    name: 'index',
+    component: () => import('@/views/home/index'), // 路由懒加载
+    meta: {
+      title: '首页', // 页面标题
+      keepAlive: false // keep-alive 标识
+    }
   }
 ]
 
-const router = new VueRouter({
-  mode: 'history', // 路由模式
-  base: process.env.BASE_URL,
-  routes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // 如果你是 history模式 需要配置vue.config.js publicPath
+    // base: '/app/',
+    scrollBehavior: () => ({y: 0}),
+    routes: router
+  })
 
-export default router
+export default createRouter()
