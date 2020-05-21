@@ -1,7 +1,9 @@
 <!-- home -->
 <template>
   <div>
-    <div class="text-cyan text-lg">首页</div>
+    <div class="text-cyan text-lg">
+      首页
+    </div>
   </div>
 </template>
 
@@ -20,4 +22,8 @@ export default {
   methods: {}
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+div {
+  @include flexbox();
+}
+</style>

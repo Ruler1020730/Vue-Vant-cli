@@ -2,39 +2,42 @@
 const path = require('path')
 const defaultSettings = require('./src/config/index.js')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-
+const CompressionPlugin = require('compression-webpack-plugin')
 const resolve = dir => path.join(__dirname, dir)
 // page title
 const name = defaultSettings.title || 'vue mobile template'
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 
 // externals
-// const externals = {
-//   vue: 'Vue',
-//   'vue-router': 'VueRouter',
-//   vuex: 'Vuex',
-//   vant: 'vant',
-//   axios: 'axios'
-// }
+// 可选
+const externals = {
+  vue: 'Vue',
+  'vue-router': 'VueRouter',
+  vuex: 'Vuex',
+  vant: 'vant',
+  axios: 'axios'
+}
+
 // CDN外链，会插入到index.html中
-// const cdn = {
-//   // 开发环境
-//   dev: {
-//     css: [],
-//     js: []
-//   },
-//   // 生产环境
-//   build: {
-//     css: ['https://cdn.jsdelivr.net/npm/vant@2.4.7/lib/index.css'],
-//     js: [
-//       'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js',
-//       'https://cdn.jsdelivr.net/npm/vue-router@3.1.5/dist/vue-router.min.js',
-//       'https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js',
-//       'https://cdn.jsdelivr.net/npm/vuex@3.1.2/dist/vuex.min.js',
-//       'https://cdn.jsdelivr.net/npm/vant@2.4.7/lib/index.min.js'
-//     ]
-//   }
-// }
+// 可选
+const cdn = {
+  // 开发环境
+  dev: {
+    css: [],
+    js: []
+  },
+  // 生产环境
+  build: {
+    css: ['https://cdn.jsdelivr.net/npm/vant@2.8.2/lib/index.css'],
+    js: [
+      'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js',
+      'https://cdn.jsdelivr.net/npm/vue-router@3.1.5/dist/vue-router.min.js',
+      'https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js',
+      'https://cdn.jsdelivr.net/npm/vuex@3.1.2/dist/vuex.min.js',
+      'https://cdn.jsdelivr.net/npm/vant@2.8.2/lib/index.min.js'
+    ]
+  }
+}
 
 module.exports = {
   publicPath: './', // 署应用包时的基本 URL。 vue-router hash 模式使用
@@ -83,10 +86,22 @@ module.exports = {
     config.name = name
 
     // 为生产环境修改配置...
-    // if (IS_PROD) {
-    //   // externals
-    //   config.externals = externals
-    // }
+    // 可选
+    if (IS_PROD) {
+      // externals
+      config.externals = externals
+    }
+    // gzip压缩
+    if (IS_PROD) {
+      config.plugins.push(
+        new CompressionPlugin({
+          // gzip压缩配置
+          test: /\.js$|\.html$|\.css/, // 匹配文件名
+          threshold: 10240, // 对超过10kb的数据进行压缩
+          deleteOriginalAssets: false // 是否删除原文件
+        })
+      )
+    }
   },
 
   chainWebpack: config => {
@@ -103,15 +118,16 @@ module.exports = {
 
     /**
      * 添加CDN参数到htmlWebpackPlugin配置中
+     * 可选
      */
-    // config.plugin('html').tap(args => {
-    //   if (IS_PROD) {
-    //     args[0].cdn = cdn.build
-    //   } else {
-    //     args[0].cdn = cdn.dev
-    //   }
-    //   return args
-    //  })
+    config.plugin('html').tap(args => {
+      if (IS_PROD) {
+        args[0].cdn = cdn.build
+      } else {
+        args[0].cdn = cdn.dev
+      }
+      return args
+    })
 
     /**
      * 设置保留空格
