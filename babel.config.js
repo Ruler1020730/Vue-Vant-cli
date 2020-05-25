@@ -9,7 +9,8 @@ const plugins = [
       style: true
     },
     'vant'
-  ]
+  ],
+  '@babel/plugin-proposal-optional-chaining' // 添加es2020 可选链操作符 兼容
 ]
 // 去除 console.log
 if (IS_PROD) {
